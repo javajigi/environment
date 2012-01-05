@@ -1,0 +1,67 @@
+require 'tablesetter'
+
+#
+# Prepare
+#
+require 'yaml'
+config = YAML::load_file(ENV['config'])
+apps = config['applications']
+app = apps[ENV['app']]
+puts "Application: #{ENV['app']}"
+puts "Application Type: #{app['type']}"
+controllerClass = Platform.get(Object::const_get(app['type'] + "Controller"))
+if controllerClass == nil
+    raise "Unknown type of application"
+end
+appProxy = controllerClass.new(config, app)
+
+#
+# Tasks
+#
+task :install do
+    appProxy.install
+end
+
+task :uninstall do
+    appProxy.uninstall
+end
+
+task :start do
+    appProxy.start
+end
+
+task :stop do
+    appProxy.stop
+end
+
+task :restart => [:stop, :start]
+
+task :update, :revision do |task, args|
+    appProxy.update(args[:revision])
+end
+
+task :build do
+    appProxy.build
+end
+
+task :rsync do
+    appProxy.rsync
+end
+
+task :sync => [:update, :rsync]
+
+namespace :log do
+    task :tail do
+        appProxy.log_tail
+    end
+    
+    task :edit do
+        appProxy.log_edit
+    end
+end
+
+task :deploy => [:update, :build, :restart]
+
+task :autodeploy do
+    appProxy.autodeploy
+end

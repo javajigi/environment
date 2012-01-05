@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ -z $1 ] || [ -z $2 ] || [ -z $3 ]
+then
+  echo "usage: ts environment application task ...";
+  exit
+fi
+
+PROG=`which $0`
+TABLESETTER_HOME=`dirname $PROG`
+
+CONFIG=$1
+shift
+APP=$1
+shift
+rake --trace -f $TABLESETTER_HOME/Rakefile -I $TABLESETTER_HOME/lib config=${CONFIG}.config app=$APP $*
