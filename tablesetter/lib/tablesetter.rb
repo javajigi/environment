@@ -202,7 +202,6 @@ class WebAppController
         @java_opts = app['java_opts']
         @ci_rss = app['ci_rss']
         @svn = Platform.get(Subversion).new
-		@rsync = app['rsync']
         ENV['CATALINA_HOME'] = @catalina_home
         ENV['CATALINA_BASE'] = @catalina_base
         ENV['JAVA_OPTS'] = @java_opts
