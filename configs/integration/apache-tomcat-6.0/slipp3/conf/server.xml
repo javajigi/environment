@@ -11,6 +11,10 @@
 			<Host appBase="webapps" name="localhost"
 				unpackWARs="false"  deployOnStartup="false" autoDeploy="false"
 				xmlNamespaceAware="false" xmlValidation="false">
+				<Context docBase="/usr/apps/projects/slipp" path="" reloadable="false">
+				</Context>
+				
+				<Context docBase="/usr/apps/projects/confluence" path="/wiki" reloadable="false" />				
 			</Host>
 		</Engine>
 	</Service>
