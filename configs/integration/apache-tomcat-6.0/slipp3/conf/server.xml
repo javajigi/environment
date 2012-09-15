@@ -11,8 +11,6 @@
 			<Host appBase="webapps" name="localhost"
 				unpackWARs="false"  deployOnStartup="false" autoDeploy="false"
 				xmlNamespaceAware="false" xmlValidation="false">
-				<Context docBase="" path="" reloadable="false">
-				</Context>
 			</Host>
 		</Engine>
 	</Service>
