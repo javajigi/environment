@@ -6,3 +6,6 @@ git pull
 
 cd /usr/apps/git-repositories/environment
 ts slipp slipp4-web build
+
+cd /usr/apps/git-repositories/environment
+ts slipp slipp4-web restart
